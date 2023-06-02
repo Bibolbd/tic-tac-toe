@@ -30,11 +30,11 @@ const gameBoard = (() => {
         gameboard[cellId - 1] === undefined
           ? (setCell(cellId - 1, gameController.getCurrentPlayer().marker),
             renderGameBoard(gameboard),
+            gameController.win(gameController.getCurrentPlayer(), gameboard),
+            gameController.switchPlayer(),
             gameController.displayPlayer(
               gameController.getCurrentPlayer().name
-            ),
-            gameController.win(gameController.getCurrentPlayer(), gameboard),
-            gameController.switchPlayer())
+            ))
           : console.log("Put your mark on emtpy cell!");
       });
     });
@@ -51,7 +51,7 @@ const gameBoard = (() => {
     gameboard,
     clearBoard,
     addMarker,
-    resetBoard
+    resetBoard,
   };
 })();
 
@@ -72,6 +72,7 @@ const gameController = (() => {
       markerButton.addEventListener("click", () => {
         player1.marker = markerButton.textContent;
         player2.marker = player1.marker === "O" ? "X" : "O";
+        console.log(player1.marker, player2.marker);
         choiceDisplayer.textContent = "";
         markerButtons.forEach((button) => {
           button.classList.add("hidden");
@@ -112,7 +113,7 @@ const gameController = (() => {
         gameboard[condition.second] === marker &&
         gameboard[condition.third] === marker
       ) {
-        console.log("WIN!!!");
+        console.log(`${player.name} has win!!!`);
         gameBoard.resetBoard();
       }
     });
