@@ -32,6 +32,7 @@ const gameBoard = (() => {
             gameController.displayPlayer(
               gameController.getCurrentPlayer().name
             ),
+            gameController.win(gameController.getCurrentPlayer(), gameboard),
             gameController.switchPlayer())
           : console.log("Put your mark on emtpy cell!");
       });
@@ -71,6 +72,9 @@ const gameController = (() => {
         player1.marker = markerButton.textContent;
         player2.marker = player1.marker === "O" ? "X" : "O";
         choiceDisplayer.textContent = "";
+        markerButtons.forEach((button) => {
+          button.classList.add("hidden");
+        });
       });
     });
   };
@@ -88,7 +92,30 @@ const gameController = (() => {
     displayer.textContent = `${name}'s turn`;
   };
 
-  return { getCurrentPlayer, switchPlayer, displayPlayer, chooseMarker };
+  const winConditions = [
+    { first: 0, second: 1, third: 2 },
+    { first: 3, second: 4, third: 5 },
+    { first: 6, second: 7, third: 8 },
+    { first: 0, second: 3, third: 6 },
+    { first: 1, second: 4, third: 7 },
+    { first: 2, second: 5, third: 8 },
+    { first: 0, second: 4, third: 8 },
+    { first: 2, second: 4, third: 6 },
+  ];
+
+  const win = (player, gameboard) => {
+    const marker = player.marker;
+    winConditions.forEach((condition) => {
+      if (
+        gameboard[condition.first] === marker &&
+        gameboard[condition.second] === marker &&
+        gameboard[condition.third] === marker
+      )
+        console.log("WIN!!!");
+    });
+  };
+
+  return { getCurrentPlayer, switchPlayer, displayPlayer, chooseMarker, win };
 })();
 
 const gameboard = gameBoard.gameboard;
