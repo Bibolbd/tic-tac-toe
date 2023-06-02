@@ -8,6 +8,7 @@ const gameBoard = (() => {
   const resetBoard = () => {
     gameboard.forEach((_, index) => {
       gameboard[index] = undefined;
+      renderGameBoard(gameboard);
     });
   };
 
@@ -43,7 +44,6 @@ const gameBoard = (() => {
     const restartButton = document.querySelector("#restartButton");
     restartButton.addEventListener("click", () => {
       resetBoard();
-      renderGameBoard(gameboard);
     });
   };
 
@@ -51,6 +51,7 @@ const gameBoard = (() => {
     gameboard,
     clearBoard,
     addMarker,
+    resetBoard
   };
 })();
 
@@ -110,8 +111,10 @@ const gameController = (() => {
         gameboard[condition.first] === marker &&
         gameboard[condition.second] === marker &&
         gameboard[condition.third] === marker
-      )
+      ) {
         console.log("WIN!!!");
+        gameBoard.resetBoard();
+      }
     });
   };
 
