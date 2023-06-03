@@ -30,7 +30,10 @@ const gameBoard = (() => {
         gameboard[cellId - 1] === undefined
           ? (setCell(cellId - 1, gameController.getCurrentPlayer().marker),
             renderGameBoard(gameboard),
-            gameController.win(gameController.getCurrentPlayer(), gameboard),
+            gameController.checkForWin(
+              gameController.getCurrentPlayer(),
+              gameboard
+            ),
             gameController.switchPlayer(),
             gameController.displayPlayer(
               gameController.getCurrentPlayer().name
@@ -72,7 +75,6 @@ const gameController = (() => {
       markerButton.addEventListener("click", () => {
         player1.marker = markerButton.textContent;
         player2.marker = player1.marker === "O" ? "X" : "O";
-        console.log(player1.marker, player2.marker);
         choiceDisplayer.textContent = "";
         markerButtons.forEach((button) => {
           button.classList.add("hidden");
@@ -105,21 +107,37 @@ const gameController = (() => {
     { first: 2, second: 4, third: 6 },
   ];
 
-  const win = (player, gameboard) => {
+  const checkForWin = (player, gameboard) => {
     const marker = player.marker;
+    let isWin = false;
     winConditions.forEach((condition) => {
       if (
         gameboard[condition.first] === marker &&
         gameboard[condition.second] === marker &&
         gameboard[condition.third] === marker
       ) {
-        console.log(`${player.name} has win!!!`);
+        isWin = true;
+        console.log(`${player.name} has won!!!`);
         gameBoard.resetBoard();
       }
     });
+
+    if (!isWin) {
+      const isTie = gameboard.every((cell) => cell !== undefined);
+      if (isTie) {
+        console.log("It's a tie!");
+        gameBoard.resetBoard();
+      }
+    }
   };
 
-  return { getCurrentPlayer, switchPlayer, displayPlayer, chooseMarker, win };
+  return {
+    getCurrentPlayer,
+    switchPlayer,
+    displayPlayer,
+    chooseMarker,
+    checkForWin,
+  };
 })();
 
 const gameboard = gameBoard.gameboard;
