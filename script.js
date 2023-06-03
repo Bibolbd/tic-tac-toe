@@ -1,5 +1,5 @@
 const gameBoard = (() => {
-  let gameboard = Array(9);
+  let gameboard = Array(9).fill(undefined)
 
   const setCell = (index, value) => {
     gameboard[index] = value;
@@ -8,8 +8,8 @@ const gameBoard = (() => {
   const resetBoard = () => {
     gameboard.forEach((_, index) => {
       gameboard[index] = undefined;
-      renderGameBoard(gameboard);
     });
+    renderGameBoard(gameboard);
   };
 
   const renderGameBoard = (gameboard) => {
@@ -110,6 +110,7 @@ const gameController = (() => {
   const checkForWin = (player, gameboard) => {
     const marker = player.marker;
     let isWin = false;
+    console.log(gameboard);
     winConditions.forEach((condition) => {
       if (
         gameboard[condition.first] === marker &&
@@ -123,7 +124,9 @@ const gameController = (() => {
     });
 
     if (!isWin) {
-      const isTie = gameboard.every((cell) => cell !== undefined);
+      const isTie = gameboard.every(
+        (cell) => cell !== undefined
+      );
       if (isTie) {
         console.log("It's a tie!");
         gameBoard.resetBoard();
@@ -141,6 +144,7 @@ const gameController = (() => {
 })();
 
 const gameboard = gameBoard.gameboard;
+gameBoard.resetBoard();
 gameController.chooseMarker();
 gameBoard.addMarker();
 gameBoard.clearBoard();
