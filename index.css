@@ -25,18 +25,23 @@ body {
   text-transform: uppercase;
 }
 
-button {
+#play {
+  text-decoration: none;
   background-color: var(--yellow);
   color: var(--red);
   border: 5px solid var(--green);
   padding: 10px;
   text-transform: uppercase;
+  text-align: center;
 }
 
-button:hover {
+#play:hover {
+  text-decoration: none;
   background-color: var(--red);
   color: white;
   border: 5px solid var(--yellow);
   padding: 10px;
   text-transform: uppercase;
+  text-align: center;
 }
+
