@@ -1,0 +1,20 @@
+h1 {
+  text-align: center;
+  line-height: 115%;
+}
+
+h1:nth-child(1) {
+  color: var(--red);
+  font-size: 60px;
+}
+
+h1:nth-child(2) {
+  color: var(--yellow);
+  font-size: 68px;
+}
+
+h1:nth-child(3) {
+  color: var(--green);
+  font-size: 76px;
+  margin-bottom: 40px;
+}
