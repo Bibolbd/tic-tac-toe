@@ -1,9 +1,21 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-color);
+  gap: 2em;
+  width: 100%;
+  height: 100vh;
+  text-transform: uppercase;
+}
+
 #main-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  grid-template-columns: repeat(3, 8rem);
+  grid-template-rows: repeat(3, 8rem);
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 1.5rem;
 }
 
 #cell-1,
@@ -15,16 +27,53 @@
 #cell-7,
 #cell-8,
 #cell-9 {
-  padding: 30px;
-  font-size: x-large;
-  border: 1px solid black;
+  background-color: var(--yellow);
 }
 
 #markero,
 #markerx {
-  padding: 20px;
+  padding: 1rem;
 }
 
 .hidden {
   display: none;
+}
+
+section {
+  font-size: 1.4em;
+  display: flex;
+  gap: 1.5rem;
+
+}
+
+div {
+  display: flex;
+}
+
+section > p:first-child {
+  color: var(--red);
+}
+
+section > p:last-child {
+  color: var(--green);
+}
+
+section div > p:first-child {
+  color: white;
+}
+
+section div > p:last-child {
+  color: white;
+}
+
+body > div {
+  font-size: 1.9rem;
+}
+
+body > div > p:first-child {
+  color: var(--red);
+}
+
+body > div > p:last-child {
+  color: white;
 }
