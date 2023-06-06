@@ -6,7 +6,7 @@ body {
   background: var(--bg-color);
   gap: 2em;
   width: 100%;
-  height: 100vh;
+  height: auto;
   text-transform: uppercase;
 }
 
@@ -43,7 +43,6 @@ section {
   font-size: 1.4em;
   display: flex;
   gap: 1.5rem;
-
 }
 
 div {
@@ -76,4 +75,58 @@ body > div > p:first-child {
 
 body > div > p:last-child {
   color: white;
+}
+
+button {
+  text-decoration: none;
+  background-color: var(--yellow);
+  color: var(--red);
+  border: 5px solid var(--green);
+  padding: 10px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+button:hover {
+  text-decoration: none;
+  background-color: var(--red);
+  color: white;
+  border: 5px solid var(--yellow);
+  padding: 10px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+section h1 {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  color: white;
+  text-align: center;
+  line-height: 115%;
+}
+
+section:nth-of-type(2),
+section:nth-of-type(3) {
+  flex-direction: column;
+  width: 18.75rem;
+  height: 18.75rem;
+  position: absolute;
+  background-color: var(--bg-color);
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  /* display: none; */
+}
+
+section:nth-of-type(2) > div {
+  gap: 2rem;
+}
+
+section:nth-of-type(3) > div {
+  gap: 0.5rem;
+}
+
+section:nth-of-type(3) > img {
+  width: 80px;
+  height: 76.67px;
 }
