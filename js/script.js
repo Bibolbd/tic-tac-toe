@@ -69,18 +69,21 @@ const gameController = (() => {
 
   const chooseMarker = () => {
     const choiceDisplayer = document.querySelector("#chooseMarker");
-    choiceDisplayer.textContent = "choose your marker Player1";
+    choiceDisplayer.classList.add("visible");
     const markerButtons = document.querySelectorAll('[id^="marker"]');
     markerButtons.forEach((markerButton) => {
       markerButton.addEventListener("click", () => {
         player1.marker = markerButton.textContent;
         player2.marker = player1.marker === "O" ? "X" : "O";
-        choiceDisplayer.textContent = "";
-        markerButtons.forEach((button) => {
-          button.classList.add("hidden");
-        });
+        choiceDisplayer.classList.remove("visible");
+        choiceDisplayer.classList.add("hidden");
       });
     });
+  };
+
+  const startChoose = () => {
+    const playButton = document.querySelector("#play");
+    playButton.addEventListener("click", chooseMarker);
   };
 
   const getCurrentPlayer = () => {
@@ -136,12 +139,12 @@ const gameController = (() => {
     getCurrentPlayer,
     switchPlayer,
     displayPlayer,
-    chooseMarker,
     checkForWin,
+    startChoose,
   };
 })();
 
 const gameboard = gameBoard.gameboard;
-gameController.chooseMarker();
+gameController.startChoose();
 gameBoard.addMarker();
 gameBoard.clearBoard();

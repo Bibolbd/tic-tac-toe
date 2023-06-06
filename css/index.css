@@ -16,7 +16,8 @@
   font-family:'Press Start 2P';
 }
 
-#play {
+a,
+button {
   text-decoration: none;
   background-color: var(--yellow);
   color: var(--red);
@@ -26,7 +27,8 @@
   text-align: center;
 }
 
-#play:hover {
+a:hover,
+button:hover {
   text-decoration: none;
   background-color: var(--red);
   color: white;
@@ -34,5 +36,31 @@
   padding: 10px;
   text-transform: uppercase;
   text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: flex;
+}
+
+section {
+  font-size: 1.4em;
+  display: flex;
+  gap: 1.5rem;
+}
+
+div {
+  display: flex;
+}
+
+section h1 {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  color: white;
+  text-align: center;
+  line-height: 115%;
 }
 

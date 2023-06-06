@@ -1,10 +1,12 @@
 body {
-  display: grid;
-  place-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
   width: 100%;
   background-color: var(--bg-color);
   text-transform: uppercase;
+  position: relative;
 }
 
 h1 {
@@ -12,7 +14,12 @@ h1 {
   line-height: 115%;
 }
 
-h1:nth-child(1) {
+body > div {
+  display: grid;
+  place-content: center;
+}
+
+div > h1:nth-child(1) {
   color: var(--red);
   font-size: 60px;
 }
@@ -26,4 +33,21 @@ h1:nth-child(3) {
   color: var(--green);
   font-size: 76px;
   margin-bottom: 40px;
+}
+
+section {
+  flex-direction: column;
+  width: 18.75rem;
+  height: 18.75rem;
+  position: absolute;
+  background-color: var(--bg-color);
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  border: 2px dashed white;
+  display: none;
+}
+
+section:nth-of-type(1) > div {
+  gap: 2rem;
 }
