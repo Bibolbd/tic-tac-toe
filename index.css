@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 :root {
-  --bg-color: #4D455D;
-  --red: #E96479;
-  --yellow: #F5E9CF;
-  --green: #7DB9B6;
+  --bg-color: #4d455d;
+  --red: #e96479;
+  --yellow: #f5e9cf;
+  --green: #7db9b6;
 }
 
 ::before,
@@ -13,7 +13,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family:'Press Start 2P';
+  font-family: "Press Start 2P";
 }
 
 a,
@@ -98,6 +98,23 @@ body {
   place-content: center;
   color: var(--bg-color);
   font-size: 2em;
+}
+
+@media screen and (max-width: 768px) {
+  #main-container {
+    grid-template-columns: repeat(3, 4em);
+    grid-template-rows: repeat(3, 4em);
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+  }
+
+  section {
+    font-size: 1em;
+  }
+
+  body > div > p {
+    font-size: 22px;
+  }
 }
 
 #markero,
