@@ -96,7 +96,8 @@ const gameController = (() => {
 
   const displayPlayer = (name) => {
     const displayer = document.querySelector("#currentPlayer");
-    displayer.textContent = `${name}'s turn`;
+    displayer.textContent = `${name}`;
+    displayer.style.color = name === 'player1' ? 'var(--red)' : 'var(--green)'
   };
 
   const winConditions = [
@@ -144,7 +145,7 @@ const gameController = (() => {
   };
 })();
 
-// const gameboard = gameBoard.gameboard;
+const gameboard = gameBoard.gameboard;
 gameController.startChoose();
-// gameBoard.addMarker();
+gameBoard.addMarker();
 // gameBoard.clearBoard();
