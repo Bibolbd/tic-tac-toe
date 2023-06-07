@@ -94,6 +94,10 @@ body {
 #cell-8,
 #cell-9 {
   background-color: var(--yellow);
+  display: grid;
+  place-content: center;
+  color: var(--bg-color);
+  font-size: 2em;
 }
 
 #markero,

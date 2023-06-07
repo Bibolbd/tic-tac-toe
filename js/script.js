@@ -65,18 +65,21 @@ const gameController = (() => {
 
   let player1 = Player("player1", "X");
   let player2 = Player("player2", "X");
+  let player1Count = 0;
+  let player2Count = 0;
+  let gameCount = 1;
   let currentPlayer = player1;
 
   const chooseMarker = () => {
-    document.querySelector("#play").style.display = 'none';
+    document.querySelector("#play").style.display = "none";
     const choiceDisplayer = document.querySelector("#chooseMarker");
-    choiceDisplayer.style.display = 'flex'
+    choiceDisplayer.style.display = "flex";
     const markerButtons = document.querySelectorAll('[id^="marker"]');
     markerButtons.forEach((markerButton) => {
       markerButton.addEventListener("click", () => {
         player1.marker = markerButton.textContent;
         player2.marker = player1.marker === "O" ? "X" : "O";
-        choiceDisplayer.style.display = 'none'
+        choiceDisplayer.style.display = "none";
       });
     });
   };
@@ -97,7 +100,7 @@ const gameController = (() => {
   const displayPlayer = (name) => {
     const displayer = document.querySelector("#currentPlayer");
     displayer.textContent = `${name}`;
-    displayer.style.color = name === 'player1' ? 'var(--red)' : 'var(--green)'
+    displayer.style.color = name === "player1" ? "var(--red)" : "var(--green)";
   };
 
   const winConditions = [
@@ -123,6 +126,14 @@ const gameController = (() => {
         isWin = true;
         console.log(`${player.name} has won!!!`);
         // switchPlayer();
+        const player1Score = document.querySelector("#player1Score");
+        const player2Score = document.querySelector("#player2Score");
+        player === player1
+          ? (player1Count++, (player1Score.textContent = player1Count + ":"))
+          : (player2Count++, (player2Score.textContent = player2Count));
+        gameCount++;
+        currentPlayer = gameCount % 2 === 0 ? player1 : player2;
+        gameResult()
         gameBoard.resetBoard();
       }
     });
@@ -131,10 +142,35 @@ const gameController = (() => {
       const isTie = gameboard.every((cell) => cell !== undefined);
       if (isTie) {
         console.log("It's a tie!");
+        gameCount++;
+        currentPlayer = gameCount % 2 === 0 ? player1 : player2;
+        player1Count++;
+        player2Count++;
+        player1Score.textContent = player1Count + ':';
+        player2Score.textContent = player2Count
         gameBoard.resetBoard();
       }
     }
   };
+
+  const gameResult = () => {
+    const result = document.querySelector("#result");
+    const resulth1 = document.querySelector("#result h1");
+    const resultimg = document.querySelector("#result img")
+    if(player1Count == 3 && player2Count == 3) {
+      result.style.display = 'flex'
+      resulth1.textContent = 'draw'
+      resultimg.src = '../assets/Group 9.png'
+    } else if (player1Count == 3 && player1Count > player2Count) {
+      result.style.display = 'flex'
+      resulth1.textContent = 'player one win'
+      resultimg.src = '../assets/trophy (2) 1.png'
+    } else if (player2Count == 3 && player2Count > player1Count) {
+      result.style.display = 'flex'
+      resulth1.textContent = 'player two win'
+      resultimg.src = '../assets/trophy (2) 1.png'
+    }
+  }
 
   return {
     getCurrentPlayer,
