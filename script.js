@@ -168,15 +168,15 @@ const gameController = (() => {
     if (player1Count == 3 && player2Count == 3) {
       result.style.display = "flex";
       resulth1.textContent = "draw";
-      resultimg.src = "../assets/Group 9.png";
+      resultimg.src = "assets/Group 9.png";
     } else if (player1Count == 3 && player1Count > player2Count) {
       result.style.display = "flex";
       resulth1.textContent = "player one win";
-      resultimg.src = "../assets/trophy (2) 1.png";
+      resultimg.src = "assets/trophy (2) 1.png";
     } else if (player2Count == 3 && player2Count > player1Count) {
       result.style.display = "flex";
       resulth1.textContent = "player two win";
-      resultimg.src = "../assets/trophy (2) 1.png";
+      resultimg.src = "assets/trophy (2) 1.png";
     }
   };
 
