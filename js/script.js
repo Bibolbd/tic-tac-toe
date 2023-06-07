@@ -144,7 +144,7 @@ const gameController = (() => {
   };
 })();
 
-const gameboard = gameBoard.gameboard;
+// const gameboard = gameBoard.gameboard;
 gameController.startChoose();
-gameBoard.addMarker();
-gameBoard.clearBoard();
+// gameBoard.addMarker();
+// gameBoard.clearBoard();
