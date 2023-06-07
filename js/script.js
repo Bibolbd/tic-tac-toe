@@ -26,7 +26,6 @@ const gameBoard = (() => {
     cells.forEach((cell) => {
       cell.addEventListener("click", () => {
         const cellId = parseInt(cell.id.replace("cell-", ""));
-        console.log("Clicked cell:", cellId);
         gameboard[cellId - 1] === undefined
           ? (setCell(cellId - 1, gameController.getCurrentPlayer().marker),
             renderGameBoard(gameboard),
@@ -44,9 +43,16 @@ const gameBoard = (() => {
   };
 
   const clearBoard = () => {
-    const restartButton = document.querySelector("#restartButton");
+    const restartButton = document.querySelector("#restart");
     restartButton.addEventListener("click", () => {
       resetBoard();
+      document.querySelector("#player1Score").textContent = "0:";
+      document.querySelector("#player2Score").textContent = "0";
+      player1Count = 0;
+      player2Count = 0;
+      gameCount = 1;
+      document.querySelector("#play").style.display = "block";
+      document.querySelector("#result").style.display = "none";
     });
   };
 
@@ -58,6 +64,10 @@ const gameBoard = (() => {
   };
 })();
 
+let player1Count = 0;
+let player2Count = 0;
+let gameCount = 1;
+
 const gameController = (() => {
   const Player = (name, marker) => {
     return { name, marker };
@@ -65,8 +75,6 @@ const gameController = (() => {
 
   let player1 = Player("player1", "X");
   let player2 = Player("player2", "X");
-  let player1Count = 0;
-  let player2Count = 0;
   let gameCount = 1;
   let currentPlayer = player1;
 
@@ -125,7 +133,6 @@ const gameController = (() => {
       ) {
         isWin = true;
         console.log(`${player.name} has won!!!`);
-        // switchPlayer();
         const player1Score = document.querySelector("#player1Score");
         const player2Score = document.querySelector("#player2Score");
         player === player1
@@ -133,7 +140,7 @@ const gameController = (() => {
           : (player2Count++, (player2Score.textContent = player2Count));
         gameCount++;
         currentPlayer = gameCount % 2 === 0 ? player1 : player2;
-        gameResult()
+        gameResult();
         gameBoard.resetBoard();
       }
     });
@@ -146,8 +153,9 @@ const gameController = (() => {
         currentPlayer = gameCount % 2 === 0 ? player1 : player2;
         player1Count++;
         player2Count++;
-        player1Score.textContent = player1Count + ':';
-        player2Score.textContent = player2Count
+        player1Score.textContent = player1Count + ":";
+        player2Score.textContent = player2Count;
+        gameResult();
         gameBoard.resetBoard();
       }
     }
@@ -156,21 +164,21 @@ const gameController = (() => {
   const gameResult = () => {
     const result = document.querySelector("#result");
     const resulth1 = document.querySelector("#result h1");
-    const resultimg = document.querySelector("#result img")
-    if(player1Count == 3 && player2Count == 3) {
-      result.style.display = 'flex'
-      resulth1.textContent = 'draw'
-      resultimg.src = '../assets/Group 9.png'
+    const resultimg = document.querySelector("#result img");
+    if (player1Count == 3 && player2Count == 3) {
+      result.style.display = "flex";
+      resulth1.textContent = "draw";
+      resultimg.src = "../assets/Group 9.png";
     } else if (player1Count == 3 && player1Count > player2Count) {
-      result.style.display = 'flex'
-      resulth1.textContent = 'player one win'
-      resultimg.src = '../assets/trophy (2) 1.png'
+      result.style.display = "flex";
+      resulth1.textContent = "player one win";
+      resultimg.src = "../assets/trophy (2) 1.png";
     } else if (player2Count == 3 && player2Count > player1Count) {
-      result.style.display = 'flex'
-      resulth1.textContent = 'player two win'
-      resultimg.src = '../assets/trophy (2) 1.png'
+      result.style.display = "flex";
+      resulth1.textContent = "player two win";
+      resultimg.src = "../assets/trophy (2) 1.png";
     }
-  }
+  };
 
   return {
     getCurrentPlayer,
@@ -184,4 +192,4 @@ const gameController = (() => {
 const gameboard = gameBoard.gameboard;
 gameController.startChoose();
 gameBoard.addMarker();
-// gameBoard.clearBoard();
+gameBoard.clearBoard();
