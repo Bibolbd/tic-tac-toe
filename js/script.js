@@ -68,15 +68,15 @@ const gameController = (() => {
   let currentPlayer = player1;
 
   const chooseMarker = () => {
+    document.querySelector("#play").style.display = 'none';
     const choiceDisplayer = document.querySelector("#chooseMarker");
-    choiceDisplayer.classList.add("visible");
+    choiceDisplayer.style.display = 'flex'
     const markerButtons = document.querySelectorAll('[id^="marker"]');
     markerButtons.forEach((markerButton) => {
       markerButton.addEventListener("click", () => {
         player1.marker = markerButton.textContent;
         player2.marker = player1.marker === "O" ? "X" : "O";
-        choiceDisplayer.classList.remove("visible");
-        choiceDisplayer.classList.add("hidden");
+        choiceDisplayer.style.display = 'none'
       });
     });
   };
